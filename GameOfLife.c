@@ -7,6 +7,20 @@
 #define MAXL 100
 #define MAXC 100
 
+// o trecho abaixo define algumas macros
+#ifdef __unix__
+    #include <unistd.h>
+    #define LIMPATELA "clear"
+    #define DORME(a) sleep(a)
+    #define TEMPO 5
+#else
+    #include <Windows.h>
+    #define LIMPATELA "cls"
+    #define DORME(a) Sleep(a)
+    #define TEMPO 100
+#endif
+
+
 int main()
 {
 
@@ -119,7 +133,7 @@ void menuInicJogo(char mat[ ][MAXC], int nL, int nC)
 {
     int opcao;
 
-   printf("(1)Bloco\n(2)Blinker\n(3)Sapo\n(4)Glider\n(5)LWSS\nEntre com a opcao: ");
+   printf("\n(1)Bloco\n(2)Blinker\n(3)Sapo\n(4)Glider\n(5)LWSS\nEntre com a opcao: ");
    scanf("%d",&opcao);
    switch(opcao)
    {
@@ -177,11 +191,11 @@ void atualizaMat(char mAtual[][MAXC], char mAnt[][MAXC], int nL, int nC)
     
 		if(c < 2 || c > 3)
 	   {
-	   		char mAtual[][MAXC] = VAZ;
+	   		mAtual[i][j] = VAZ;
 		}
 	  	else
 		{ 
-			char mAtual[][MAXC] = ORG;
+			mAtual[i][j] = ORG;
 		} 			
 	}
    }
